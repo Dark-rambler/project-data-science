@@ -15,7 +15,16 @@ export const routes: Routes = [
         (m) => m.LoginComponent
       ),
   },
-//   {
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import( './domains/dashboard/dashboard.component').then(
+        (m) => m.DashboardComponent
+      ),
+  },
+
+
+  //   {
 //     path: '',
 //     component: LayoutComponent,
 //     canActivate: [routeGuard],

@@ -1,4 +1,4 @@
 export const LOGIN_FORM_CONTROLS = {
-    userName: [''],
+    username: [''],
     password: [''],
 }

@@ -1,11 +1,22 @@
-<form [formGroup]="form" class="bg-blue-100 p-8  rounded  w-full">
+<form [formGroup]="form" class="bg-blue-100 p-8  rounded-xl  w-full">
     <h2 class="text-xl w-full text-center font-bold text-gray-800">Iniciar Sesión</h2>
     <div>
-        <app-input-form [parentForm]="form" controlName="userName" id="username" userName="Nombre de usuario" />
+        <app-input-form [parentForm]="form" [controlName]="loginControls.USERNAME" id="username"
+            userName="Nombre de usuario" />
     </div>
     <div>
-        <app-input-form [parentForm]="form" controlName="password" id="password" userName="Contraseña" type="password" />
+        <app-input-form [parentForm]="form" [controlName]="loginControls.PASSWORD" id="password" userName="Contraseña"
+            type="password" />
     </div>
+    <div class="text-center mt-3">
+        @if(isFailied()){
+            <small class="text-red-500 pt-5 ">
+            revise sus credenciales e intente
+        </small>
+
+        }
+    </div>
+
     <div class=" flex items-center justify-center ">
         <button appClickLogin class="cursor-pointer hover:bg-blue-700 bg-blue-600 text-white px-5 py-3 rounded-xl mt-5">
             Iniciar sesion</button>

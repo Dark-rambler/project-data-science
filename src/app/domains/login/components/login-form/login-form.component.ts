@@ -4,6 +4,7 @@ import { LoginControls } from '../../enums/login-controls.enum';
 import { ClickLoginDirective } from "../../directives/click-login.directive";
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { LOGIN_FORM_CONTROLS } from '../../constants/login-form.constants';
+import { LoginService } from '../../services/login.service';
 
 @Component({
     selector: 'app-login-form',
@@ -14,6 +15,7 @@ export class LoginFormComponent {
     protected readonly loginControls = LoginControls;
     private readonly _formBuilder = inject(FormBuilder)
     protected form = this._formBuilder.group(LOGIN_FORM_CONTROLS);
-
+    private _loginService = inject(LoginService)
+    protected isFailied = this._loginService.isIncorrectUser
 
 }

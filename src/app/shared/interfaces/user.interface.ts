@@ -1,5 +1,5 @@
 export interface UserLogin {
-    userName: string,
+    username: string,
     password: string
 }
 export interface User extends UserLogin {

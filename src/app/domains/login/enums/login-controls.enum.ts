@@ -1,4 +1,4 @@
 export enum LoginControls {
-    USERNAME="userName",
+    USERNAME="username",
     PASSWORD ="password"
 }
