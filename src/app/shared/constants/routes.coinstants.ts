@@ -1,3 +1,5 @@
 export const ROUTE_NAMES ={
-    DASHBOARD:'/dashboard'
+    DASHBOARD:'/dashboard',
+    CONSULTING: "/consulting",
+    LOGIN: '/login'
 }

@@ -64,5 +64,8 @@ export class AuthService {
     public setLoading(){
         this.isLoading.set(true)
     }
+    public clearLocalStrage(){
+        localStorage.clear()
+    }
 
 }
