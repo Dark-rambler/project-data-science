@@ -1,0 +1,228 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Predicción de Salud Cardiovascular</h2>
+    
+    <!-- Sección: Condiciones Médicas -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-blue-700 mb-4 border-b-2 border-blue-200 pb-2">🏥 Condiciones Médicas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.HIGH_BP" 
+                id="highBP" 
+                [label]="labels.HighBP" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.HIGH_CHOL" 
+                id="highChol" 
+                [label]="labels.HighChol" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.CHOL_CHECK" 
+                id="cholCheck" 
+                [label]="labels.CholCheck" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.SMOKER" 
+                id="smoker" 
+                [label]="labels.Smoker" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.STROKE" 
+                id="stroke" 
+                [label]="labels.Stroke" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.HEART_DISEASE_OR_ATTACK" 
+                id="heartDisease" 
+                [label]="labels.HeartDiseaseorAttack" />
+        </div>
+    </div>
+
+    <!-- Sección: Datos Físicos -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-green-700 mb-4 border-b-2 border-green-200 pb-2">📊 Datos Físicos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <app-number-input 
+                [parentForm]="form" 
+                [controlName]="healthControls.BMI" 
+                id="bmi" 
+                [label]="labels.BMI"
+                [min]="12"
+                [max]="98"
+                [step]="0.1" />
+            
+            <app-number-input 
+                [parentForm]="form" 
+                [controlName]="healthControls.MENT_HLTH" 
+                id="mentHlth" 
+                [label]="labels.MentHlth"
+                [min]="0"
+                [max]="30" />
+            
+            <app-number-input 
+                [parentForm]="form" 
+                [controlName]="healthControls.PHYS_HLTH" 
+                id="physHlth" 
+                [label]="labels.PhysHlth"
+                [min]="0"
+                [max]="30" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.DIFF_WALK" 
+                id="diffWalk" 
+                [label]="labels.DiffWalk" />
+            
+            <app-select-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.GEN_HLTH" 
+                [options]="selectOptions.generalHealthOptions"
+                id="genHlth" 
+                [label]="labels.GenHlth" />
+        </div>
+    </div>
+
+    <!-- Sección: Hábitos de Vida -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">🍎 Hábitos de Vida</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.PHYS_ACTIVITY" 
+                id="physActivity" 
+                [label]="labels.PhysActivity" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.FRUITS" 
+                id="fruits" 
+                [label]="labels.Fruits" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.VEGGIES" 
+                id="veggies" 
+                [label]="labels.Veggies" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.HVY_ALCOHOL_CONSUMP" 
+                id="hvyAlcohol" 
+                [label]="labels.HvyAlcoholConsump" />
+        </div>
+    </div>
+
+    <!-- Sección: Acceso a Atención Médica -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-red-700 mb-4 border-b-2 border-red-200 pb-2">🏥 Acceso a Atención Médica</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.ANY_HEALTHCARE" 
+                id="anyHealthcare" 
+                [label]="labels.AnyHealthcare" />
+            
+            <app-switch-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.NO_DOC_BC_COST" 
+                id="noDocbcCost" 
+                [label]="labels.NoDocbcCost" />
+        </div>
+    </div>
+
+    <!-- Sección: Información Demográfica -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-indigo-700 mb-4 border-b-2 border-indigo-200 pb-2">👤 Información Demográfica</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <app-select-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.SEX" 
+                [options]="selectOptions.sexOptions"
+                id="sex" 
+                [label]="labels.Sex" />
+            
+            <app-select-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.AGE" 
+                [options]="selectOptions.ageOptions"
+                id="age" 
+                [label]="labels.Age" />
+            
+            <app-select-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.EDUCATION" 
+                [options]="selectOptions.educationOptions"
+                id="education" 
+                [label]="labels.Education" />
+            
+            <app-select-form 
+                [parentForm]="form" 
+                [controlName]="healthControls.INCOME" 
+                [options]="selectOptions.incomeOptions"
+                id="income" 
+                [label]="labels.Income" />
+        </div>
+    </div>
+
+    <!-- Botón de envío -->
+    <div class="flex justify-center mt-8">
+        <app-button-component 
+            [label]="isLoading() ? 'Analizando...' : 'Realizar Predicción'"
+            [loading]="isLoading()"
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transform transition-all duration-200 hover:scale-105 shadow-lg" />
+    </div>
+
+    <!-- Resultados -->
+    @if (predictionResult()) {
+        <div class="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-l-4 border-green-500">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Resultado de la Predicción</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-600">Probabilidad de riesgo</p>
+                    <p class="text-2xl font-bold text-blue-600">{{(predictionResult()!.probability * 100).toFixed(1)}}%</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-600">Nivel de riesgo</p>
+                    <p class="text-2xl font-bold" 
+                       [class]="predictionResult()!.risk_level === 'Alto' ? 'text-red-600' : predictionResult()!.risk_level === 'Medio' ? 'text-yellow-600' : 'text-green-600'">
+                       {{predictionResult()!.risk_level}}
+                    </p>
+                </div>
+            </div>
+            
+            @if (predictionResult()!.recommendations && predictionResult()!.recommendations.length > 0) {
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Recomendaciones:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        @for (recommendation of predictionResult()!.recommendations; track recommendation) {
+                            <li class="text-gray-700">{{recommendation}}</li>
+                        }
+                    </ul>
+                </div>
+            }
+            
+            <div class="mt-4 flex justify-center">
+                <button 
+                    (click)="clearResult()"
+                    class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Nueva Predicción
+                </button>
+            </div>
+        </div>
+    }
+
+    <!-- Error -->
+    @if (hasError()) {
+        <div class="mt-8 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
+            <p class="text-red-700">
+                <strong>Error:</strong> No se pudo realizar la predicción. Por favor, intente nuevamente.
+            </p>
+        </div>
+    }
+</form>

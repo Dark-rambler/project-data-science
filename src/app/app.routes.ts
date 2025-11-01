@@ -32,6 +32,13 @@ export const routes: Routes = [
             (m) => m.ConsultingComponent
           ),
       },
+      {
+        path: 'health-prediction',
+        loadComponent: () =>
+          import('./domains/health-prediction/health-prediction.component').then(
+            (m) => m.HealthPredictionComponent
+          ),
+      },
     ]
   },
   {

@@ -39,6 +39,11 @@
                 Consultar
             </a>
 
+            <a [routerLink]="ROUTE_NAMES.HEALTH_PREDICTION"
+                class="hover:bg-blue-500 px-3 py-2 rounded transition-colors duration-200" (click)="closeMenu()">
+                Predicción
+            </a>
+
             <app-button-component color="red" label="Cerrar sesión" (click)="logout(); closeMenu()" />
         </nav>
 
