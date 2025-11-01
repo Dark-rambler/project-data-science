@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="bg-blue-100 p-8  rounded  w-full">
+    <h2 class="text-xl w-full text-center font-bold text-gray-800">Iniciar Sesión</h2>
+    <div>
+        <app-input-form controlName="userName"  id="username" userName="Nombre de usuario" />
+    </div>
+    <div>
+        <app-input-form  controlName="password" id="password" userName="Contraseña" />
+    </div>
+    <div class=" flex items-center justify-center ">
+        <button appClickLogin class="cursor-pointer hover:bg-blue-700 bg-blue-600 text-white px-5 py-3 rounded-xl mt-5">
+            Iniciar sesion</button>
+    </div>
+</form>

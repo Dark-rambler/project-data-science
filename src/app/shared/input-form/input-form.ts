@@ -1,13 +1,11 @@
 import { Component, computed, input } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
-
-
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-input-form',
     templateUrl: './input-form.component.html',
-    standalone:true
+    standalone: true,
+    imports: [ReactiveFormsModule]
 })
 export class InputFormComponent {
     public userName = input.required<string>();
@@ -18,7 +16,7 @@ export class InputFormComponent {
 
     public control = computed(() => {
         const form = this.parentForm();
-        const controlName = this.controlName();
+        const controlName = this.controlName()!;
         return form?.get(controlName) as FormControl;
     });
 
