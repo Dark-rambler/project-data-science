@@ -1,1 +1,14 @@
-<div>Header</div>
+<header class="bg-blue-600 text-white shadow-lg">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <h1 class="text-xl font-bold">Data Science Project</h1>
+      </div>
+      <nav class="flex space-x-4">
+        <a routerLink="/dashboard" class="hover:text-blue-200 px-3 py-2 rounded">Dashboard</a>
+        <a routerLink="/consulting" class="hover:text-blue-200 px-3 py-2 rounded">Consultoría</a>
+        <button class="hover:text-blue-200 px-3 py-2 rounded" (click)="logout()">Cerrar sesión</button>
+      </nav>
+    </div>
+  </div>
+</header>
