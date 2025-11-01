@@ -16,8 +16,11 @@ export class InputFormComponent {
 
     public control = computed(() => {
         const form = this.parentForm();
-        const controlName = this.controlName()!;
-        return form?.get(controlName) as FormControl;
+        const controlName = this.controlName();
+        if (!form || !controlName) {
+            return new FormControl('');
+        }
+        return form.get(controlName) as FormControl;
     });
 
 }

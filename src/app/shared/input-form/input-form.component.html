@@ -1,4 +1,4 @@
 <div class="mt-3">
-    <label for="username ">{{userName()}}</label>
-    <input [type]="type()" [formControlName]="controlName()" [id]="id()" class="bg-white w-full rounded p-2 ">
+    <label [for]="id()">{{userName()}}</label>
+    <input [type]="type()" [formControl]="control()" [id]="id()" class="bg-white w-full rounded p-2 ">
 </div>
