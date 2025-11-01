@@ -101,7 +101,7 @@ export const SELECT_OPTIONS = {
 
 // Campos que usan switch (valores binarios 0/1)
 export const BINARY_FIELDS = [
-    'HighBP', 'HighChol', 'CholCheck', 'Smoker', 'Stroke', 
-    'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 
+    'HighBP', 'HighChol', 'CholCheck', 'Smoker', 'Stroke',
+    'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies',
     'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'DiffWalk'
 ];

@@ -40,7 +40,7 @@ export interface HealthPredictionResponse {
 export class HealthPredictionService {
     private readonly _http = inject(HttpClient);
     private apiUrl = environment.apiUrl;
-    
+
     public isLoading = signal<boolean>(false);
     public predictionResult = signal<HealthPredictionResponse | null>(null);
     public hasError = signal<boolean>(false);
@@ -48,7 +48,7 @@ export class HealthPredictionService {
     public predict(data: HealthPredictionRequest): Observable<HealthPredictionResponse> {
         this.isLoading.set(true);
         this.hasError.set(false);
-        
+
         return this._http.post<HealthPredictionResponse>(`${this.apiUrl}/predict/`, data);
     }
 

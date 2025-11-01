@@ -1,6 +1,58 @@
-<div>
-    <h2 class="text-gray-600 text-3xl text-center">
-        Controla tu estado de salud durante tus utlimas reviciones
-    </h2>
-    
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Dashboard de Salud</h1>
+            <p class="text-xl text-gray-600">Controla tu estado de salud durante tus últimas revisiones</p>
+        </div>
+
+        <!-- Loading State -->
+        @if (isLoading()) {
+            <div class="flex justify-center items-center h-64">
+                <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+            </div>
+        }
+
+        <!-- Dashboard Content -->
+        @if (!isLoading() && healthRecords().length > 0) {
+            <!-- Stats Cards -->
+            <app-stats-cards [stats]="healthStats()" />
+
+            <!-- Charts Grid -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+                <!-- Risk Factors Chart -->
+                <app-risk-factors-chart [healthRecords]="healthRecords()" />
+                
+                <!-- Healthy Habits Chart -->
+                <app-healthy-habits-chart [healthRecords]="healthRecords()" />
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <!-- BMI Distribution Chart -->
+                <app-bmi-chart [healthRecords]="healthRecords()" />
+                
+                <!-- Health Comparison Chart -->
+                <app-health-comparison-chart [healthRecords]="healthRecords()" />
+            </div>
+        }
+
+        <!-- No Data State -->
+        @if (!isLoading() && healthRecords().length === 0) {
+            <div class="text-center py-16">
+                <div class="bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">No hay datos disponibles</h3>
+                    <p class="text-gray-600 mb-4">Completa tu primer formulario de salud para ver las estadísticas</p>
+                    <a routerLink="/health-prediction" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
+                        Crear Registro
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
 </div>
