@@ -5,10 +5,11 @@ import { ClickLoginDirective } from "../../directives/click-login.directive";
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { LOGIN_FORM_CONTROLS } from '../../constants/login-form.constants';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { ButtonComponentComponent } from "../../../../shared/button-component/button-component.component";
 
 @Component({
     selector: 'app-login-form',
-    imports: [InputFormComponent, ClickLoginDirective, ReactiveFormsModule],
+    imports: [InputFormComponent, ClickLoginDirective, ReactiveFormsModule, ButtonComponentComponent],
     templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
@@ -17,4 +18,5 @@ export class LoginFormComponent {
     protected form = this._formBuilder.group(LOGIN_FORM_CONTROLS);
     private _authService = inject(AuthService)
     protected isFailied = this._authService.isIncorrectUser;
+    protected isLoading = this._authService.isLoading
 }

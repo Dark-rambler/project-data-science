@@ -10,14 +10,13 @@
     </div>
     <div class="text-center mt-3">
         @if(isFailied()){
-            <small class="text-red-500 pt-5">
-                Revise sus credenciales e intente nuevamente
-            </small>
+        <small class="text-red-500 pt-5">
+            Revise sus credenciales e intente nuevamente
+        </small>
         }
     </div>
 
-    <div class=" flex items-center justify-center ">
-        <button appClickLogin class="cursor-pointer hover:bg-blue-700 bg-blue-600 text-white px-5 py-3 rounded-xl mt-5">
-            Iniciar sesion</button>
+    <div class=" flex items-center justify-center mt-2 ">
+        <app-button-component [loading]="isLoading()" appClickLogin  label="Iniciar Sesion"  />
     </div>
 </form>

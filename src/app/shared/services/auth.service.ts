@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, finalize, Observable, of, tap } from 'rxjs';
 import { UserData } from '../enum/user-data.enum';
 import { User, UserLogin } from '../interfaces/user.interface';
 import { LoginService } from '../../domains/login/services/login.service';
@@ -13,23 +13,22 @@ import { ROUTE_NAMES } from '../constants/routes.coinstants';
 export class AuthService {
     private readonly _router = inject(Router)
     private readonly _loginService = inject(LoginService)
-    
-    // Signal para controlar el estado de error de login
+    public readonly isLoading = signal<boolean>(false);
     public isIncorrectUser = signal<boolean>(false);
 
     public Authentication(data: UserLogin) {
-        // Reset error state before attempting login
         this.isIncorrectUser.set(false);
-
+        this.isLoading.set(true)
         this._loginService.login(data).pipe(
             tap(data => this.setToken(data.access)),
             tap(data => this.setRefresh(data.refresh)),
             tap(data => this.setUserInfo(data.user)),
             tap(() => this._router.navigate([ROUTE_NAMES.DASHBOARD])),
             catchError(() => {
-                this.showLoginError();
+                this.isIncorrectUser.set(true);
                 return of(null);
             }),
+            finalize(() => this.isLoading.set(false))
         ).subscribe();
     }
 
@@ -62,5 +61,8 @@ export class AuthService {
         localStorage.setItem(UserData.USER, JSON.stringify(data))
     }
 
+    public setLoading(){
+        this.isLoading.set(true)
+    }
 
 }
