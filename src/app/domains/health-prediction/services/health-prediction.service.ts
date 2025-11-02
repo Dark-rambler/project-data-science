@@ -49,10 +49,12 @@ export class HealthPredictionService {
         this.isLoading.set(true);
         this.hasError.set(false);
 
-        return this._http.post<HealthPredictionResponse>(`${this.apiUrl}/predict/`, data);
+        return this._http.post<HealthPredictionResponse>(`${this.apiUrl}/predict-diabetes/`, data);
     }
 
     public setPredictionResult(result: HealthPredictionResponse) {
+        console.log(result);
+
         this.predictionResult.set(result);
         this.isLoading.set(false);
     }

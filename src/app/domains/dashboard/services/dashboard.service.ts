@@ -16,7 +16,7 @@ export class DashboardService {
 
     public getHealthRecords(): Observable<HealthRecord[]> {
         this.isLoading.set(true);
-        return this._http.get<HealthRecord[]>(`${this.apiUrl}/health-records/`).pipe(
+        return this._http.get<HealthRecord[]>(`${this.apiUrl}/health/list/`).pipe(
             map(records => {
                 this.healthRecords.set(records);
                 this.isLoading.set(false);
