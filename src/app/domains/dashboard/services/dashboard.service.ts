@@ -40,33 +40,44 @@ export class DashboardService {
         }
 
         const totalRecords = records.length;
-        const averageBMI = records.reduce((sum, record) => sum + record.input_data.BMI, 0) / totalRecords;
+        const averageBMI = records.reduce((sum, record) => {
+            return sum + (record.input_data?.BMI || 0);
+        }, 0) / totalRecords;
 
         // Contar factores de riesgo promedio por registro
         const riskFactorsCount = records.reduce((sum, record) => {
             const data = record.input_data;
-            const risks = Number(data.HighBP) + Number(data.HighChol) + Number(data.Smoker) +
-                         Number(data.Stroke) + Number(data.HeartDiseaseorAttack) +
-                         Number(data.HvyAlcoholConsump) + Number(data.DiffWalk);
+            if (!data) return sum;
+            const risks = Number(data.HighBP || 0) + Number(data.HighChol || 0) + Number(data.Smoker || 0) +
+                         Number(data.Stroke || 0) + Number(data.HeartDiseaseorAttack || 0) +
+                         Number(data.HvyAlcoholConsump || 0) + Number(data.DiffWalk || 0);
             return sum + risks;
         }, 0) / totalRecords;
 
         // Contar hábitos saludables promedio por registro
         const healthyHabitsCount = records.reduce((sum, record) => {
             const data = record.input_data;
-            const healthyHabits = Number(data.PhysActivity) + Number(data.Fruits) +
-                                 Number(data.Veggies) + Number(data.CholCheck);
+            if (!data) return sum;
+            const healthyHabits = Number(data.PhysActivity || 0) + Number(data.Fruits || 0) +
+                                 Number(data.Veggies || 0) + Number(data.CholCheck || 0);
             return sum + healthyHabits;
         }, 0) / totalRecords;
 
-        const mentalHealthAverage = records.reduce((sum, record) => sum + record.input_data.MentHlth, 0) / totalRecords;
-        const physicalHealthAverage = records.reduce((sum, record) => sum + record.input_data.PhysHlth, 0) / totalRecords;
+        const mentalHealthAverage = records.reduce((sum, record) => {
+            return sum + (record.input_data?.MentHlth || 0);
+        }, 0) / totalRecords;
+        
+        const physicalHealthAverage = records.reduce((sum, record) => {
+            return sum + (record.input_data?.PhysHlth || 0);
+        }, 0) / totalRecords;
 
         // Calcular promedio de riesgo de diabetes
-        const diabetesRiskAverage = records.reduce((sum, record) => sum + record.prob_diabetes, 0) / totalRecords;
+        const diabetesRiskAverage = records.reduce((sum, record) => {
+            return sum + (record.prob_diabetes || 0);
+        }, 0) / totalRecords;
 
         // Contar registros de alto riesgo (>50% probabilidad de diabetes)
-        const highRiskCount = records.filter(record => record.prob_diabetes > 50).length;
+        const highRiskCount = records.filter(record => (record.prob_diabetes || 0) > 50).length;
 
         return {
             totalRecords,
