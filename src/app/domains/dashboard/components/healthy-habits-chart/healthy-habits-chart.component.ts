@@ -27,9 +27,9 @@ import { HealthRecord } from '../../../../shared/interfaces/health-record.interf
 })
 export class HealthyHabitsChartComponent {
     public healthRecords = input<HealthRecord[]>([]);
-    
+
     public chartType: ChartType = 'bar';
-    
+
     public chartOptions: ChartConfiguration['options'] = {
         responsive: true,
         maintainAspectRatio: false,
@@ -50,20 +50,20 @@ export class HealthyHabitsChartComponent {
 
     public chartData = computed((): ChartData<'bar'> => {
         const records = this.healthRecords() || [];
-        
+
         if (records.length === 0) {
             return {
                 labels: [],
                 datasets: []
             };
         }
-        
+
         const habitCounts = {
-            physActivity: records.filter(r => r.PhysActivity === 1).length,
-            fruits: records.filter(r => r.Fruits === 1).length,
-            veggies: records.filter(r => r.Veggies === 1).length,
-            cholCheck: records.filter(r => r.CholCheck === 1).length,
-            healthcare: records.filter(r => r.AnyHealthcare === 1).length
+            physActivity: records.filter(r => r.input_data.PhysActivity === 1).length,
+            fruits: records.filter(r => r.input_data.Fruits === 1).length,
+            veggies: records.filter(r => r.input_data.Veggies === 1).length,
+            cholCheck: records.filter(r => r.input_data.CholCheck === 1).length,
+            healthcare: records.filter(r => r.input_data.AnyHealthcare === 1).length
         };
 
         return {

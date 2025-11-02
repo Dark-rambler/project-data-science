@@ -55,13 +55,13 @@ export class RiskFactorsChartComponent {
         }
 
         const riskCounts = {
-            highBP: records.filter(r => r.HighBP === 1).length,
-            highChol: records.filter(r => r.HighChol === 1).length,
-            smoker: records.filter(r => r.Smoker === 1).length,
-            stroke: records.filter(r => r.Stroke === 1).length,
-            heartDisease: records.filter(r => r.HeartDiseaseorAttack === 1).length,
-            alcohol: records.filter(r => r.HvyAlcoholConsump === 1).length,
-            diffWalk: records.filter(r => r.DiffWalk === 1).length
+            highBP: records.filter(r => r.input_data.HighBP === 1).length,
+            highChol: records.filter(r => r.input_data.HighChol === 1).length,
+            smoker: records.filter(r => r.input_data.Smoker === 1).length,
+            stroke: records.filter(r => r.input_data.Stroke === 1).length,
+            heartDisease: records.filter(r => r.input_data.HeartDiseaseorAttack === 1).length,
+            alcohol: records.filter(r => r.input_data.HvyAlcoholConsump === 1).length,
+            diffWalk: records.filter(r => r.input_data.DiffWalk === 1).length
         };
 
         return {

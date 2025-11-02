@@ -27,12 +27,21 @@
                 <app-healthy-habits-chart [healthRecords]="healthRecords()" />
             </div>
 
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
                 <!-- BMI Distribution Chart -->
                 <app-bmi-chart [healthRecords]="healthRecords()" />
                 
                 <!-- Health Comparison Chart -->
                 <app-health-comparison-chart [healthRecords]="healthRecords()" />
+            </div>
+
+            <!-- Prediction Charts -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <!-- Prediction Probability Chart -->
+                <app-prediction-probability-chart [records]="healthRecords()" />
+                
+                <!-- Prediction Results Chart -->
+                <app-prediction-results-chart [records]="healthRecords()" />
             </div>
         }
 

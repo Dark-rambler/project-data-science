@@ -1,5 +1,4 @@
-export interface HealthRecord {
-    id: number;
+export interface HealthInputData {
     HighBP: number;
     HighChol: number;
     CholCheck: number;
@@ -13,16 +12,23 @@ export interface HealthRecord {
     HvyAlcoholConsump: number;
     AnyHealthcare: number;
     NoDocbcCost: number;
-    GenHlth: number;
+    GenHlth: number | string;
     MentHlth: number;
     PhysHlth: number;
     DiffWalk: number;
-    Sex: number;
+    Sex: number | string;
     Age: number;
     Education: number;
     Income: number;
+}
+
+export interface HealthRecord {
+    id: number;
+    input_data: HealthInputData;
+    prediction: number;
+    prob_no_diabetes: number;
+    prob_diabetes: number;
     created_at: string;
-    user: number;
 }
 
 export interface HealthStats {
@@ -32,4 +38,6 @@ export interface HealthStats {
     healthyHabitsCount: number;
     mentalHealthAverage: number;
     physicalHealthAverage: number;
+    diabetesRiskAverage: number;
+    highRiskCount: number;
 }

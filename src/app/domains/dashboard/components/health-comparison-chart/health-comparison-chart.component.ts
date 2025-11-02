@@ -28,9 +28,9 @@ import { HealthRecord } from '../../../../shared/interfaces/health-record.interf
 })
 export class HealthComparisonChartComponent {
     public healthRecords = input<HealthRecord[]>([]);
-    
+
     public chartType: ChartType = 'line';
-    
+
     public chartOptions: ChartConfiguration['options'] = {
         responsive: true,
         maintainAspectRatio: false,
@@ -59,17 +59,17 @@ export class HealthComparisonChartComponent {
 
     public chartData = computed((): ChartData<'line'> => {
         const records = this.healthRecords() || [];
-        
+
         if (records.length === 0) {
             return {
                 labels: [],
                 datasets: []
             };
         }
-        
+
         const labels = records.map((_, index) => `Registro ${index + 1}`);
-        const mentalHealthData = records.map(r => r.MentHlth);
-        const physicalHealthData = records.map(r => r.PhysHlth);
+        const mentalHealthData = records.map(r => r.input_data.MentHlth);
+        const physicalHealthData = records.map(r => r.input_data.PhysHlth);
 
         return {
             labels,

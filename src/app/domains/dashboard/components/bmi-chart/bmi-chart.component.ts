@@ -55,10 +55,10 @@ export class BmiChartComponent {
         }
         
         const bmiCategories = {
-            underweight: records.filter(r => r.BMI < 18.5).length,
-            normal: records.filter(r => r.BMI >= 18.5 && r.BMI < 25).length,
-            overweight: records.filter(r => r.BMI >= 25 && r.BMI < 30).length,
-            obese: records.filter(r => r.BMI >= 30).length
+            underweight: records.filter(r => r.input_data.BMI < 18.5).length,
+            normal: records.filter(r => r.input_data.BMI >= 18.5 && r.input_data.BMI < 25).length,
+            overweight: records.filter(r => r.input_data.BMI >= 25 && r.input_data.BMI < 30).length,
+            obese: records.filter(r => r.input_data.BMI >= 30).length
         };
 
         return {

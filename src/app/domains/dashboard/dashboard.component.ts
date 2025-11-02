@@ -6,6 +6,8 @@ import { RiskFactorsChartComponent } from './components/risk-factors-chart/risk-
 import { HealthyHabitsChartComponent } from './components/healthy-habits-chart/healthy-habits-chart.component';
 import { BmiChartComponent } from './components/bmi-chart/bmi-chart.component';
 import { HealthComparisonChartComponent } from './components/health-comparison-chart/health-comparison-chart.component';
+import { PredictionProbabilityChartComponent } from './components/prediction-probability-chart/prediction-probability-chart.component';
+import { PredictionResultsChartComponent } from './components/prediction-results-chart/prediction-results-chart.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,9 @@ import { HealthComparisonChartComponent } from './components/health-comparison-c
     RiskFactorsChartComponent,
     HealthyHabitsChartComponent,
     BmiChartComponent,
-    HealthComparisonChartComponent
+    HealthComparisonChartComponent,
+    PredictionProbabilityChartComponent,
+    PredictionResultsChartComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
