@@ -8,6 +8,7 @@ import { BmiChartComponent } from './components/bmi-chart/bmi-chart.component';
 import { HealthComparisonChartComponent } from './components/health-comparison-chart/health-comparison-chart.component';
 import { PredictionProbabilityChartComponent } from './components/prediction-probability-chart/prediction-probability-chart.component';
 import { PredictionResultsChartComponent } from './components/prediction-results-chart/prediction-results-chart.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,8 +37,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // Por ahora usamos datos mock, después se puede cambiar por la llamada al API
-    const mockData = this._dashboardService.getMockData();
+    const mockData = this._dashboardService.getHealthRecords()
+    // this._dashboardService.healthRecords.set(mockData);
+    .pipe(tap((data)=>this._dashboardService.healthRecords.set(data)))
+    .subscribe();
     console.log(mockData);
-    this._dashboardService.healthRecords.set(mockData);
   }
 }

@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { DashboardService } from '../dashboard/services/dashboard.service';
 import { HealthRecord } from '../../shared/interfaces/health-record.interface';
 import { HistoryProgressChartComponent } from './components/history-progress-chart/history-progress-chart.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-consulting',
@@ -26,8 +27,11 @@ export class ConsultingComponent implements OnInit {
 
   ngOnInit() {
     // Por ahora usamos datos mock, después se puede cambiar por la llamada al API
-    const mockData = this.dashboardService.getMockData();
-    this.dashboardService.healthRecords.set(mockData);
+    const mockData = this.dashboardService.getHealthRecords()
+        // this._dashboardService.healthRecords.set(mockData);
+        .pipe(tap((data)=>this.dashboardService.healthRecords.set(data)))
+        .subscribe();
+    // this.dashboardService.healthRecords.set(mockData);
   }
 
   public formatDate(dateString: string): string {

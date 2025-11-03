@@ -175,25 +175,25 @@
             [label]="isLoading() ? 'Analizando...' : 'Realizar Predicción'"
             [loading]="isLoading()"
             type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transform transition-all duration-200 hover:scale-105 shadow-lg" />
+            class="text-white rounded-xl font-semibold transform transition-all duration-200 hover:scale-105 shadow-lg" />
     </div>
 
     <!-- Resultados -->
     @if (predictionResult()) {
         <div class="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border-l-4 border-green-500">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Resultado de la Predicción</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1  gap-4">
                 <div class="bg-white p-4 rounded-lg shadow">
                     <p class="text-sm text-gray-600">Probabilidad de riesgo</p>
-                    <p class="text-2xl font-bold text-blue-600">{{(predictionResult()!.probability * 100).toFixed(1)}}%</p>
+                    <p class="text-2xl font-bold text-blue-600">{{(predictionResult()!.prob_diabetes).toFixed(1)}}%</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow">
+                <!-- <div class="bg-white p-4 rounded-lg shadow">
                     <p class="text-sm text-gray-600">Nivel de riesgo</p>
                     <p class="text-2xl font-bold"
                        [class]="predictionResult()!.risk_level === 'Alto' ? 'text-red-600' : predictionResult()!.risk_level === 'Medio' ? 'text-yellow-600' : 'text-green-600'">
                        {{predictionResult()!.risk_level}}
                     </p>
-                </div>
+                </div> -->
             </div>
 
             @if (predictionResult()!.recommendations && predictionResult()!.recommendations.length > 0) {
@@ -207,13 +207,13 @@
                 </div>
             }
 
-            <div class="mt-4 flex justify-center">
+            <!-- <div class="mt-4 flex justify-center">
                 <button
                     (click)="clearResult()"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
                     Nueva Predicción
                 </button>
-            </div>
+            </div> -->
         </div>
     }
 

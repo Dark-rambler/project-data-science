@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SelectFormComponent } from '../../../../shared/select-form/select-form.component';
 import { SwitchFormComponent } from '../../../../shared/switch-form/switch-form.component';
@@ -12,10 +12,10 @@ import { catchError, tap, of } from 'rxjs';
 @Component({
     selector: 'app-health-form',
     imports: [
-        ReactiveFormsModule, 
-        SelectFormComponent, 
+        ReactiveFormsModule,
+        SelectFormComponent,
         SwitchFormComponent,
-        NumberInputComponent, 
+        NumberInputComponent,
         ButtonComponentComponent
     ],
     templateUrl: './health-form.component.html',
@@ -25,14 +25,18 @@ export class HealthFormComponent {
     protected readonly labels = HEALTH_FORM_LABELS;
     protected readonly selectOptions = SELECT_OPTIONS;
     protected readonly binaryFields = BINARY_FIELDS;
-    
+
     private readonly _formBuilder = inject(FormBuilder);
     private readonly _healthPredictionService = inject(HealthPredictionService);
-    
+
     protected form = this._formBuilder.group(HEALTH_FORM_CONTROLS);
     protected isLoading = this._healthPredictionService.isLoading;
     protected predictionResult = this._healthPredictionService.predictionResult;
     protected hasError = this._healthPredictionService.hasError;
+
+    constructor() {
+        effect(() => { console.log(this.predictionResult())})
+    }
 
     // Método para verificar si un campo es binario
     protected isBinaryField(fieldName: string): boolean {
@@ -42,7 +46,7 @@ export class HealthFormComponent {
     protected onSubmit() {
         if (this.form.valid) {
             const formData = this.form.value as any;
-            
+
             this._healthPredictionService.predict(formData).pipe(
                 tap(result => this._healthPredictionService.setPredictionResult(result)),
                 catchError(() => {
