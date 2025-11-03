@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { AuthExpirationInterceptor } from './core/interceptors/auth-expiration.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         TokenInterceptor,
+        AuthExpirationInterceptor
       ])
     )
   ]

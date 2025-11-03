@@ -16,7 +16,7 @@ export class DashboardService {
 
     public getHealthRecords(): Observable<HealthRecord[]> {
         this.isLoading.set(true);
-        return this._http.get<HealthRecord[]>(`${this.apiUrl}/health/list/`).pipe(
+        return this._http.get<HealthRecord[]>(`${this.apiUrl}/predictions/history/`).pipe(
             map(records => {
                 this.healthRecords.set(records);
                 this.isLoading.set(false);
@@ -49,8 +49,8 @@ export class DashboardService {
             const data = record.input_data;
             if (!data) return sum;
             const risks = Number(data.HighBP || 0) + Number(data.HighChol || 0) + Number(data.Smoker || 0) +
-                         Number(data.Stroke || 0) + Number(data.HeartDiseaseorAttack || 0) +
-                         Number(data.HvyAlcoholConsump || 0) + Number(data.DiffWalk || 0);
+                Number(data.Stroke || 0) + Number(data.HeartDiseaseorAttack || 0) +
+                Number(data.HvyAlcoholConsump || 0) + Number(data.DiffWalk || 0);
             return sum + risks;
         }, 0) / totalRecords;
 
@@ -59,14 +59,14 @@ export class DashboardService {
             const data = record.input_data;
             if (!data) return sum;
             const healthyHabits = Number(data.PhysActivity || 0) + Number(data.Fruits || 0) +
-                                 Number(data.Veggies || 0) + Number(data.CholCheck || 0);
+                Number(data.Veggies || 0) + Number(data.CholCheck || 0);
             return sum + healthyHabits;
         }, 0) / totalRecords;
 
         const mentalHealthAverage = records.reduce((sum, record) => {
             return sum + (record.input_data?.MentHlth || 0);
         }, 0) / totalRecords;
-        
+
         const physicalHealthAverage = records.reduce((sum, record) => {
             return sum + (record.input_data?.PhysHlth || 0);
         }, 0) / totalRecords;

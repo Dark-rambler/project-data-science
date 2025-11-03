@@ -32,6 +32,7 @@ export interface HealthPredictionResponse {
     probability: number;
     risk_level: string;
     recommendations: string[];
+    prob_diabetes:number
 }
 
 @Injectable({
